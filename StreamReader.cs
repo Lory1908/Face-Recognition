@@ -25,7 +25,8 @@ namespace StreamManager
         {
             rgb,
             infra,
-            depth
+            depth,
+            stop
         }
 
         public Stream()
@@ -87,7 +88,7 @@ namespace StreamManager
                     colorBitmap.WritePixels(new Int32Rect(0, 0, colorFrame.Width, colorFrame.Height),
                                             colorPixels, colorFrame.Width * colorFrame.BytesPerPixel, 0);
                 }
-                else MessageBox.Show("Attendere inizializzazione");
+                else MessageBox.Show("Stoppare prima il flusso RGB");
             }
         }
 
@@ -107,7 +108,7 @@ namespace StreamManager
                     infraBitmap.WritePixels(new Int32Rect(0, 0, colorFrame.Width, colorFrame.Height),
                                             infraPixels, colorFrame.Width * colorFrame.BytesPerPixel, 0); 
                 }
-                else MessageBox.Show("Attendere inizializzazione");
+                else MessageBox.Show("Stoppare prima il flusso infrarossi");
             }
         }
 
@@ -128,7 +129,7 @@ namespace StreamManager
                     depthBitmap.WritePixels(new Int32Rect(0, 0, depthFrame.Width, depthFrame.Height),
                                             depthPixels, depthFrame.Width * depthFrame.BytesPerPixel, 0); 
                 }
-                else MessageBox.Show("Attendere inizializzazione");
+                else MessageBox.Show("Stoppare prima il flusso di profondità");
             }
         }
         
@@ -160,12 +161,17 @@ namespace StreamManager
                     return infraBitmap;
 
                 case StreamType.depth:
+                    sensor.DepthFrameReady += Sensor_DepthFrameReady;
                     sensor.DepthStream.Enable(DepthImageFormat.Resolution640x480Fps30);
                     return depthBitmap;
 
-                default:
+                case StreamType.stop:
+                    sensor.ColorStream.Disable();
+                    sensor.DepthStream.Disable();
                     return null;
 
+                default:
+                    return null;
             }
         }
 

@@ -38,6 +38,12 @@ namespace Display
             StreamTypeText.Text = "Flusso Depth";
         }
 
+        private void StopButton_Click(object sender, RoutedEventArgs e)
+        {
+            VideoDisplay.Source = flusso.GetStream(StreamManager.Stream.StreamType.stop);
+            StreamTypeText.Text = "Flusso interrotto";
+        }
+
         //what happens when I close the window
         private void Window_Closed(object sender, EventArgs e)
         {

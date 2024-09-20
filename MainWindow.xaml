@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Display.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Kinect Face Recognition" Height="600" Width="800">
+        Title="Kinect Face Recognition" Height="600" Width="900">
     <Grid>
         <!-- Visualizes video -->
         <Image Name="VideoDisplay" HorizontalAlignment="Left" VerticalAlignment="Center" Width="640" Height="480" Margin="10,0,0,0" />
@@ -10,8 +10,9 @@
         <Button Name="RGB" Content="RGB" HorizontalAlignment="Right" VerticalAlignment="Top" Width="150" Height="30" Margin="0, 200, 5, 0" Click="RGBButton_Click"/>
         <Button Name="Infra" Content="Infra" HorizontalAlignment="Right" VerticalAlignment="Center" Width="150" Height="30" Margin="0, 0, 5, 0" Click="InfraButton_Click"/>
         <Button Name="Depth" Content="Depth" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="150" Height="30" Margin="0, 0, 5, 200" Click="DepthButton_Click"/>
+        <Button Name="Stop" Content="Stop Stream" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="150" Height="30" Margin="0, 0, 5, 130" Click="StopButton_Click"/>
 
         <!-- Text to display which stream is active -->
-        <TextBlock Name="StreamTypeText" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="16" FontWeight="Bold" Foreground="Black"/>
+        <TextBlock Name="StreamTypeText" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="30" Margin="0,0,0,8" FontWeight="Bold" Foreground="Black"/>
     </Grid>
 </Window>

@@ -14,5 +14,11 @@
 
         <!-- Text to display which stream is active -->
         <TextBlock Name="StreamTypeText" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="30" Margin="0,0,0,8" FontWeight="Bold" Foreground="Black"/>
+
+		<!-- Text to display when no frame is available -->
+		<TextBlock Name="NoFrameText" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="Red" Visibility="Collapsed">
+			No data available
+		</TextBlock>
+		
     </Grid>
 </Window>

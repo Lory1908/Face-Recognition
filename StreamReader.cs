@@ -73,8 +73,12 @@ namespace StreamManager
             using (ColorImageFrame colorFrame = e.OpenColorImageFrame())
             {
 
-                if (colorFrame != null) //se avvio il flusso troppo veloce il kinect potrebbe non essere pronto
+                if (colorFrame != null) //waits for the kinect to be ready
                 {
+                    //if frame is available display stream
+                    NoFrameText.Visibility = Visibility.Collapsed;
+                    VideoDisplay.Visibility = Visibility.Visible;
+
                     //if the buffer dimension is wrong, corrects it
                     if (colorPixels == null || colorPixels.Length != colorFrame.PixelDataLength)
                     {
@@ -88,7 +92,14 @@ namespace StreamManager
                     colorBitmap.WritePixels(new Int32Rect(0, 0, colorFrame.Width, colorFrame.Height),
                                             colorPixels, colorFrame.Width * colorFrame.BytesPerPixel, 0);
                 }
-                else MessageBox.Show("Stoppare prima il flusso RGB");
+                else
+                {
+                    //MessageBox.Show("Stoppare prima il flusso RGB");
+
+                    // No stream message
+                    NoFrameText.Visibility = Visibility.Visible;
+                    VideoDisplay.Visibility = Visibility.Collapsed;
+                }
             }
         }
 
@@ -98,6 +109,9 @@ namespace StreamManager
             {
                 if (colorFrame != null) //se avvio il flusso troppo veloce il kinect potrebbe non essere pronto
                 {
+                    NoFrameText.Visibility = Visibility.Collapsed;
+                    VideoDisplay.Visibility = Visibility.Visible;
+
                     if (infraPixels == null || infraPixels.Length != colorFrame.PixelDataLength)
                     {
                         infraPixels = new byte[sensor.ColorStream.FramePixelDataLength];
@@ -108,7 +122,15 @@ namespace StreamManager
                     infraBitmap.WritePixels(new Int32Rect(0, 0, colorFrame.Width, colorFrame.Height),
                                             infraPixels, colorFrame.Width * colorFrame.BytesPerPixel, 0); 
                 }
-                else MessageBox.Show("Stoppare prima il flusso infrarossi");
+
+                else
+                {
+                    //MessageBox.Show("Stoppare prima il flusso RGB");
+
+                    // No stream message
+                    NoFrameText.Visibility = Visibility.Visible;
+                    VideoDisplay.Visibility = Visibility.Collapsed;
+                }
             }
         }
 
@@ -119,6 +141,9 @@ namespace StreamManager
             {
                 if (depthFrame != null) //se avvio il flusso troppo veloce il kinect potrebbe non essere pronto
                 {
+                    NoFrameText.Visibility = Visibility.Collapsed;
+                    VideoDisplay.Visibility = Visibility.Visible;
+
                     if (depthPixels == null || depthPixels.Length != depthFrame.PixelDataLength)
                     {
                         depthPixels = new short[depthFrame.PixelDataLength];
@@ -129,7 +154,15 @@ namespace StreamManager
                     depthBitmap.WritePixels(new Int32Rect(0, 0, depthFrame.Width, depthFrame.Height),
                                             depthPixels, depthFrame.Width * depthFrame.BytesPerPixel, 0); 
                 }
-                else MessageBox.Show("Stoppare prima il flusso di profondità");
+
+                else
+                {
+                    //MessageBox.Show("Stoppare prima il flusso RGB");
+
+                    // No stream message
+                    NoFrameText.Visibility = Visibility.Visible;
+                    VideoDisplay.Visibility = Visibility.Collapsed;
+                }
             }
         }
         
